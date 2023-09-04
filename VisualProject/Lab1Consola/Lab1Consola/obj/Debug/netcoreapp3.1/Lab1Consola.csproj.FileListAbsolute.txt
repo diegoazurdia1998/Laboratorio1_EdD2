@@ -1,0 +1,14 @@
+D:\Documentos\1A URL\ED2\Laboratorios\Lab 1\VisualProject\Lab1Consola\Lab1Consola\bin\Debug\netcoreapp3.1\Lab1Consola.exe
+D:\Documentos\1A URL\ED2\Laboratorios\Lab 1\VisualProject\Lab1Consola\Lab1Consola\bin\Debug\netcoreapp3.1\Lab1Consola.deps.json
+D:\Documentos\1A URL\ED2\Laboratorios\Lab 1\VisualProject\Lab1Consola\Lab1Consola\bin\Debug\netcoreapp3.1\Lab1Consola.runtimeconfig.json
+D:\Documentos\1A URL\ED2\Laboratorios\Lab 1\VisualProject\Lab1Consola\Lab1Consola\bin\Debug\netcoreapp3.1\Lab1Consola.runtimeconfig.dev.json
+D:\Documentos\1A URL\ED2\Laboratorios\Lab 1\VisualProject\Lab1Consola\Lab1Consola\bin\Debug\netcoreapp3.1\Lab1Consola.dll
+D:\Documentos\1A URL\ED2\Laboratorios\Lab 1\VisualProject\Lab1Consola\Lab1Consola\bin\Debug\netcoreapp3.1\Lab1Consola.pdb
+D:\Documentos\1A URL\ED2\Laboratorios\Lab 1\VisualProject\Lab1Consola\Lab1Consola\obj\Debug\netcoreapp3.1\Lab1Consola.csproj.AssemblyReference.cache
+D:\Documentos\1A URL\ED2\Laboratorios\Lab 1\VisualProject\Lab1Consola\Lab1Consola\obj\Debug\netcoreapp3.1\Lab1Consola.GeneratedMSBuildEditorConfig.editorconfig
+D:\Documentos\1A URL\ED2\Laboratorios\Lab 1\VisualProject\Lab1Consola\Lab1Consola\obj\Debug\netcoreapp3.1\Lab1Consola.AssemblyInfoInputs.cache
+D:\Documentos\1A URL\ED2\Laboratorios\Lab 1\VisualProject\Lab1Consola\Lab1Consola\obj\Debug\netcoreapp3.1\Lab1Consola.AssemblyInfo.cs
+D:\Documentos\1A URL\ED2\Laboratorios\Lab 1\VisualProject\Lab1Consola\Lab1Consola\obj\Debug\netcoreapp3.1\Lab1Consola.csproj.CoreCompileInputs.cache
+D:\Documentos\1A URL\ED2\Laboratorios\Lab 1\VisualProject\Lab1Consola\Lab1Consola\obj\Debug\netcoreapp3.1\Lab1Consola.dll
+D:\Documentos\1A URL\ED2\Laboratorios\Lab 1\VisualProject\Lab1Consola\Lab1Consola\obj\Debug\netcoreapp3.1\Lab1Consola.pdb
+D:\Documentos\1A URL\ED2\Laboratorios\Lab 1\VisualProject\Lab1Consola\Lab1Consola\obj\Debug\netcoreapp3.1\Lab1Consola.genruntimeconfig.cache
