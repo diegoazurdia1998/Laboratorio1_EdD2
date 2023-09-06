@@ -24,6 +24,7 @@ namespace Lab1Consola.Services
         {
             FileOperations reader = new FileOperations();
             JsonParser jsonParser = new JsonParser();
+            int inseta = 0, elimina = 0, actualiza = 0;
 
             List<OperationJson> operaciones = reader.readFile(this.path);
             Applicant tempApplicant;
@@ -34,11 +35,15 @@ namespace Lab1Consola.Services
                 {
                     case "INSERT":
                         Solicitantes.Add(tempApplicant.dpi, tempApplicant.name, tempApplicant);
+                        Console.WriteLine("Se insertó el solicitante con DPI" + tempApplicant.dpi);
+                        inseta++;
                         break;
                     case "DELETE":
                         try
                         {
                             Solicitantes.Remove(tempApplicant.dpi);
+                            Console.WriteLine("Se eliminó el solicitante con DPI" + tempApplicant.dpi);
+                            elimina++;
                         }
                         catch
                         {
@@ -49,6 +54,8 @@ namespace Lab1Consola.Services
                         try
                         {
                             Solicitantes.PatchT(tempApplicant.dpi, tempApplicant);
+                            Console.WriteLine("Se actualizó el solicitante con DPI" + tempApplicant.dpi);
+                            actualiza++;
                         }
                         catch(Exception e)
                         {
@@ -60,7 +67,7 @@ namespace Lab1Consola.Services
                         break;
                 }
             }
-
+            Console.WriteLine("Se realizaron:\n" + inseta + "incerciones\n" + elimina + " eliminaciones\n" + actualiza + " actualizaciones");
         }
         public Applicant buscarDPI(string DPI)
         {
@@ -74,7 +81,10 @@ namespace Lab1Consola.Services
             if (searchName.Count > 0) return searchName;
             else throw new Exception("No se encontró el nombre del solicitante");
         }
-
+        public List<Applicant> extraerSolicitantes()
+        {
+            return Solicitantes.TreeToList();
+        }
         public void ExtraerBitacoraNombre(string applicantName)
         {
             List<Applicant> applicants = Solicitantes.FindSecondaryKey(applicantName);

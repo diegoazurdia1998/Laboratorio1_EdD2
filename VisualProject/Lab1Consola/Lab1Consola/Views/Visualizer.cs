@@ -27,12 +27,11 @@ namespace Lab1Consola.Views
                     Console.WriteLine(e);
                 }
             }
-            Console.Clear();
             Console.Write("Bienvenid@");
             string opcion = "";
-            while (opcion != "4")
+            while (opcion != "5")
             {
-                Console.Write("\n* * * * * * * * * * * * * *\n1. Buscar solicitante por DPI\n2. Buscar solicitante por nombre y apellido\n3. Extraer bitácora por nombre.\n4. Salir\n\nIngrese el número correspondiente: ");
+                Console.Write("\n* * * * * * * * * * * * * *\n1. Buscar solicitante por DPI\n2. Buscar solicitante por nombre y apellido\n3. Extraer bitácora por nombre.\n4. Ver listado completo\n5. Salir\n\nIngrese el número correspondiente: ");
                 opcion = Console.ReadLine();
                 Console.Write("\n* * * * * * * * * * * * * *\n");
                 switch (opcion)
@@ -76,6 +75,14 @@ namespace Lab1Consola.Views
                         {
 
                         }
+                        break;
+                    case "4":
+                        List<Applicant> list = servicios.extraerSolicitantes();
+                        foreach(var appl in list)
+                        {
+                            Console.Write("\n- - - - - - - - - - - - - - -\nDPI: " + appl.dpi + "\nNombre y apellido: " + appl.name + "\nFecha de nacimiento: " + appl.dateBirth + "\nDireción: " + appl.address + '\n');
+                        }
+                        Console.Write("\n - - - - - - - - - - - - - - -\n");
                         break;
                 }
             }

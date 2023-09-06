@@ -588,13 +588,13 @@ namespace Lab1Consola.Utils.DataStructurs
             {
                 return false;
             }
-            if (CompareKeyDelegate(key, raiz.key) < 0)
+            if (key != null && raiz.key != null && CompareKeyDelegate(key, raiz.key) < 0)
             {
                 return Contains(raiz.Izquierda, key);
             }
             else
             {
-                if (CompareKeyDelegate(key, raiz.key) > 0)
+                if (key != null && raiz.key != null && CompareKeyDelegate(key, raiz.key) > 0)
                 {
                     return Contains(raiz.Derecha, key);
                 }
@@ -621,13 +621,13 @@ namespace Lab1Consola.Utils.DataStructurs
             {
                 return default(T);
             }
-            if (CompareKeyDelegate(key, raiz.key) < 0)
+            if (key != null && raiz.key != null && CompareKeyDelegate(key, raiz.key) < 0)
             {
                 return Find(raiz.Izquierda, key);
             }
             else
             {
-                if (CompareKeyDelegate(key, raiz.key) > 0)
+                if (key != null && raiz.key != null && CompareKeyDelegate(key, raiz.key) > 0)
                 {
                     return Find(raiz.Derecha, key);
                 }
@@ -672,9 +672,9 @@ namespace Lab1Consola.Utils.DataStructurs
         {
             if (node != null)
             {
-                if (CompareKeyDelegate(node.key, key) == 0) return node;
-                else if (CompareKeyDelegate(key, node.key) < 0) return FindNode(node.Izquierda, key);
-                else if (CompareKeyDelegate(key, node.key) > 0) return FindNode(node.Derecha, key);
+                if (key != null && node.key != null && CompareKeyDelegate(node.key, key) == 0) return node;
+                else if (key != null && node.key != null && CompareKeyDelegate(key, node.key) < 0) return FindNode(node.Izquierda, key);
+                else if (key != null && node.key != null && CompareKeyDelegate(key, node.key) > 0) return FindNode(node.Derecha, key);
                 else return null;
             }
             return null;
@@ -707,7 +707,7 @@ namespace Lab1Consola.Utils.DataStructurs
             }
             else //si el nodo no es nulo se llama recursivamente y se balancea el árbol si la altura cambió
             {
-                if (CompareKeyDelegate(key, raiz.key) < 0) //si el valor de la llave es menor a la llave actual de la raiz se inserta a la izquierda
+                if (key != null && raiz.key != null && CompareKeyDelegate(key, raiz.key) < 0) //si el valor de la llave es menor a la llave actual de la raiz se inserta a la izquierda
                 {
                     raiz.Izquierda = AddAVL(raiz.Izquierda, key, key2, item, ref flag); //se asigna a la izquierda de la raiz llamando recursivamente al método
                     if (flag) //si la bandera es verdadera se ajusta el balance del nodo segun el caso
@@ -740,7 +740,7 @@ namespace Lab1Consola.Utils.DataStructurs
                 }
                 else
                 {
-                    if (CompareKeyDelegate(key, raiz.key) > 0) //si el valor de la llave es mayor a la llave actual de la raiz se inserta a la izquierda
+                    if (key != null && raiz.key != null && CompareKeyDelegate(key, raiz.key) > 0 || CompareKeyDelegate(key, raiz.key) == 0) //si el valor de la llave es mayor a la llave actual de la raiz se inserta a la izquierda
                     {
                         raiz.Derecha = AddAVL(raiz.Derecha, key, key2, item, ref flag); //se asigna a la derecha de la raiz llamando recursivamente al método
                         if (flag) //si la bandera es verdadera se ajusta el balance del nodo segun el caso
@@ -774,6 +774,7 @@ namespace Lab1Consola.Utils.DataStructurs
                     {
                         if (_log != null)
                             _log.WriteLine(DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString() + ":" + DateTime.Now.Second.ToString() + " Fallo al insertar");
+                        throw new Exception("Llaves nulas key: " +key+" nodo key " + raiz.key);
 
                         //error. El valor no es ni mayor ni menor, es igual
                     }
@@ -803,7 +804,7 @@ namespace Lab1Consola.Utils.DataStructurs
             {
                 throw new Exception("No se encontro la llave deseada.");
             }
-            if (CompareKeyDelegate(key, nodo.key) < 0) //Si la llave del elemento es menor a la llave del nodo actual
+            if (key != null && nodo.key != null && CompareKeyDelegate(key, nodo.key) < 0) //Si la llave del elemento es menor a la llave del nodo actual
             {
                 nodo.Izquierda = RemoveAVL(nodo.Izquierda, key, ref flag); //la izquierda del nodo llama recursivamente al método
                 if (flag) //si la altura cambió
@@ -814,7 +815,7 @@ namespace Lab1Consola.Utils.DataStructurs
             }
             else
             {
-                if (CompareKeyDelegate(key, nodo.key) > 0) //Si la llave del elemento es mayor a la llave del nodo actual
+                if (key != null && nodo.key != null && CompareKeyDelegate(key, nodo.key) > 0) //Si la llave del elemento es mayor a la llave del nodo actual
                 {
                     nodo.Derecha = RemoveAVL(nodo.Derecha, key, ref flag); //la derecha del nodo llama recursivamente al método
                     if (flag)
@@ -824,30 +825,36 @@ namespace Lab1Consola.Utils.DataStructurs
                 }
                 else
                 {
-                    AVLNodeDoubleKey<K, T> q; //nodo temporal
-                    q = nodo; // se asigna el valor del nodo a q
-                    if (q.Izquierda == null) //si la izquierda de q es nula
+                    if (key != null && nodo.key != null)
                     {
-                        nodo = q.Derecha; //la raiz es gual a su derecha
-                        flag = true; //la bandera indica que la altura cambió
-                    }
-                    else
-                    {
-                        if (q.Derecha == null) //si la derecha de q es nula
+
+
+                        AVLNodeDoubleKey<K, T> tempNode; //nodo temporal
+                        tempNode = nodo; // se asigna el valor del nodo a q
+                        if (tempNode.Izquierda == null) //si la izquierda de q es nula
                         {
-                            nodo = q.Izquierda; //la raiz es igual a su izquierda
-                            flag = true;
+                            nodo = tempNode.Derecha; //la raiz es gual a su derecha
+                            flag = true; //la bandera indica que la altura cambió
                         }
                         else
                         {
-                            nodo.Izquierda = Replace(nodo, nodo.Izquierda, ref flag); //la izquirdad e la raiz se balancea
-                            if (flag) //si la altura cambió
+                            if (tempNode.Derecha == null) //si la derecha de q es nula
                             {
-                                nodo = LeftBalance(nodo, ref flag); //se balancea por la izquierda
+                                nodo = tempNode.Izquierda; //la raiz es igual a su izquierda
+                                flag = true;
                             }
-                            q = null; //se elimina q
+                            else
+                            {
+                                nodo.Izquierda = Replace(nodo, nodo.Izquierda, ref flag); //la izquirdad e la raiz se balancea
+                                if (flag) //si la altura cambió
+                                {
+                                    nodo = LeftBalance(nodo, ref flag); //se balancea por la izquierda
+                                }
+                                tempNode = null; //se elimina q
+                            }
                         }
                     }
+                    else throw new Exception("Llaves nulas");
                 }
             }
             return nodo; //retorna el nodo actual
