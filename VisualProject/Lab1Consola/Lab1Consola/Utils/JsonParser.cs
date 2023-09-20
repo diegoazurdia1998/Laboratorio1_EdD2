@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.Json;
 using Lab1Consola.Models;
+using Lab1Consola.Services;
 
 namespace Lab1Consola.Utils
 {
@@ -11,9 +12,11 @@ namespace Lab1Consola.Utils
         public Applicant jsonToApplicant(string json)
         {
             Applicant appl =  new Applicant();
+            CompressingOperations compress = new CompressingOperations();
             try
             {
                 appl = JsonSerializer.Deserialize<Applicant>(json);
+                appl = compress.CompressApplicant(appl);
             }
             catch
             {

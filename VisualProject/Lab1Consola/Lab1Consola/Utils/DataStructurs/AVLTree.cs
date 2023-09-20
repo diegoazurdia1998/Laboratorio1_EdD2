@@ -530,12 +530,14 @@ namespace Lab1Consola.Utils.DataStructurs
             this.ContainsKey = contains;
             this._log = null;
         }
-        public AVLTreeDoubleKey(CompareKeyDelegate<K> comparer, String name)
+        public AVLTreeDoubleKey(CompareKeyDelegate<K> comparer, ContainsKeyDelegate<K> contains, String name)
         {
             this.Raiz = null;
             this.CompareKeyDelegate = comparer;
+            this.ContainsKey = contains;
             this._log = new StreamWriter(name);
         }
+       
         /// <summary>
         /// Obtiene la cantidad de nodos del árbol
         /// </summary>
@@ -707,7 +709,7 @@ namespace Lab1Consola.Utils.DataStructurs
             }
             else //si el nodo no es nulo se llama recursivamente y se balancea el árbol si la altura cambió
             {
-                if (key != null && raiz.key != null && CompareKeyDelegate(key, raiz.key) < 0) //si el valor de la llave es menor a la llave actual de la raiz se inserta a la izquierda
+                if (CompareKeyDelegate(key, raiz.key) < 0) //si el valor de la llave es menor a la llave actual de la raiz se inserta a la izquierda
                 {
                     raiz.Izquierda = AddAVL(raiz.Izquierda, key, key2, item, ref flag); //se asigna a la izquierda de la raiz llamando recursivamente al método
                     if (flag) //si la bandera es verdadera se ajusta el balance del nodo segun el caso
@@ -740,7 +742,7 @@ namespace Lab1Consola.Utils.DataStructurs
                 }
                 else
                 {
-                    if (key != null && raiz.key != null && CompareKeyDelegate(key, raiz.key) > 0 || CompareKeyDelegate(key, raiz.key) == 0) //si el valor de la llave es mayor a la llave actual de la raiz se inserta a la izquierda
+                    if (CompareKeyDelegate(key, raiz.key) > 0) //si el valor de la llave es mayor a la llave actual de la raiz se inserta a la izquierda
                     {
                         raiz.Derecha = AddAVL(raiz.Derecha, key, key2, item, ref flag); //se asigna a la derecha de la raiz llamando recursivamente al método
                         if (flag) //si la bandera es verdadera se ajusta el balance del nodo segun el caso
@@ -774,7 +776,10 @@ namespace Lab1Consola.Utils.DataStructurs
                     {
                         if (_log != null)
                             _log.WriteLine(DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString() + ":" + DateTime.Now.Second.ToString() + " Fallo al insertar");
-                        throw new Exception("Llaves nulas key: " +key+" nodo key " + raiz.key);
+
+                        if (CompareKeyDelegate(key, raiz.key) == 0) throw new Exception("Se repite la llave: " + key + ". No es posible ingresarla");
+                        else if(key == null || raiz.key ==null) throw new Exception("Llaves nulas key: " + key + " nodo key " + raiz.key);
+                        
 
                         //error. El valor no es ni mayor ni menor, es igual
                     }

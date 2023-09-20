@@ -8,16 +8,18 @@ namespace Lab1Consola.Models
     {
         public string name { get; set; }
        public string dpi { get; set; }
-        public string dateBirth { get; set; }
+        public string datebirth { get; set; }
         public string address { get; set; }
+        public string[] companies { get; set; }
         public Applicant()
         { }
-        public Applicant(string n, string d, string db, string a)
+        public Applicant(string n, string d, string db, string a, string[] c)
         {
             this.name = n;
             this.dpi = d;
-            this.dateBirth = db;
+            this.datebirth = db;
             this.address = a;
+            this.companies = c;
         }
     }
 }

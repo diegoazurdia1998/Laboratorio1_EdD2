@@ -12,12 +12,12 @@ namespace Lab1Consola.Utils
         /// <returns>* Si x es menor a y devuelve -1 * si x es igual a y devuleve 0 * si x es mayor a y devuelve 1</returns>
         public int ComparerString(string x, string y)
         {
-            return x.CompareTo(y);
+            return x.ToLower().CompareTo(y.ToLower());
         }
 
         public bool ContainsKey(string x, string y)
         {
-            return x.Contains(y);
+            return x.ToLower().Contains(y.ToLower());
         }
         
     }
